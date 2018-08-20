@@ -72,7 +72,7 @@ Simply, provide training data in a Watson NLC compatible format (.csv) and POST 
 
 Access the GUI based tooling by logging into your [IBM Cloud Dashboard](https://console.us-east.bluemix.net/dashboard/services). 
 
-In the Services area, click your Natural Language Classifier service tile to open the instance dashboard. Once in the service dashboard, click 'Open tool' and upload your training data.
+In the Services area, click your Natural Language Classifier service tile to open the instance dashboard. Once in the service dashboard, click `Open tool` and upload your training data.
 
 For more information, see the [specific documentation](https://console.bluemix.net/docs/services/natural-language-classifier/tool-overview.html#managing-toolkit).
 
@@ -92,7 +92,7 @@ Use [Watson Natural Language Classifier](https://www.ibm.com/watson/services/nat
 
 While the [full corpus](https://en.wikipedia.org/wiki/Enron_Corpus) contains over 600k emails, this subset has been modified to just under 20k emails with spam and ham labels. More information about the Enron corpus can be found [here](https://en.wikipedia.org/wiki/Enron_Corpus).
 
-The dataset was downloaded from [EDRM] (edrm.net). Except where otherwise noted, the content posted at EDRM.net is licensed under a Creative Commons Attribution 3.0 Unported License. 
+The dataset was downloaded from [EDRM](http://www.edrm.net/). Except where otherwise noted, the content posted at EDRM.net is licensed under a Creative Commons Attribution 3.0 Unported License. 
 
 That means you are free to share, remix or make commercial use of the content so long as you provide attribution. To provide attribution.
 
