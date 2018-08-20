@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Spam E-Mail Classifier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Watson Natural Language Classifier for E-mail Spam" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="stylesheets/watson-bootstrap-dark.css" rel="stylesheet">
+    <link href="stylesheets/style.css" type="text/css" rel="stylesheet">
+
+    <body>
+
+        <div class="container">
+            <div class="row header">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h1>Phishing E-Mail Spam Classifier
+                        </h1>
+                    </div>
+                    <div>
+                        <p>
+                            Use <a target="_blank" href="https://www.ibm.com/watson/services/natural-language-classifier/">Watson Natural Language Classifier</a> to predict e-mail spam. Click the drop down to view some examples or enter your own email text and see how its classified.
+                        </p>
+                        <p>
+                            The Training Data: Data files are a modification of the <a target="_blank" href="https://www.edrm.net/resources/data-sets"> Enron E-mail Dataset </a> as found on EDRM.net. 
+                            That data is available under a Creative Commons Attribution 3.0 Unported License. That means you are free to share, remix or make commercial use of the 
+                            content so long as you provide attribution. More information can be found
+                            <a href="https://www.edrm.net/resources/data-sets" target="_blank">here</a>.
+                        </p>
+                        <p>
+                            <a target="_blank" href="https://github.com/zmohammad01/nlc-email-spam"> Fork the code in GitHub </a> | 
+                            <a target="_blank" href="https://www.ibm.com/watson/services/natural-language-classifier/"> NLC Product Page </a> |
+                            <a target="_blank" href="https://console.bluemix.net/docs/services/natural-language-classifier/getting-started.html"> View the docs </a> |
+                            <a target="_blank" href="https://console.bluemix.net/docs/services/natural-language-classifier/sample-applications.html#sample-apps"> Additional Sample Apps</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="well">
+                        <form id="form" role="form">
+                            <div class="input-group classifier-input-form">
+                                <input class="form-control input-lg classify-text" placeholder="Enter text" type="text" autofocus required />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-lg classify-btn" type="submit">Classify
+                                        <i class="loading fa fa-spinner fa-spin"></i>
+                                    </button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-lg dropdown-toggle examples-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu search-dropdown-menu">
+                                            <li>
+                                                <a href="#">Dear John, Hope all is well. I wanted to reach out and check to see if you were still able to make it to the 5 pm meeting?</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Hello, iTunes let us know that you asked to cancel your membership. We've cancelled your membership effective Tuesday Match 21st, 2017. Obviously we'd love to have you back. if you change your mind, simply restart your membership to enjoy all the best tv shows & movies without interruption. restart member (link) We're here to help if you need it. Visit the Help Center for more information or contact us! - Your friends at Netflix</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Dear Vince, thank you very much for your e - mail and for acknowledging receipt of my email. I am really excited about the opportunity to see you soon. I am available every day at the first half of february , except for february 8 after 2 pm. (I will give a presentation at the southern methodist university). Please let me know if it is more convenient for you to see me in houston and i will be happy to fly there. I look forward to hearing from you. Sincerely , Valery</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">I am Dr. Bakare Tunde, the cousin of Nigerian Astronaut, Air Force Major Abacha Tunde. He was the first African in space when he made a secret flight to the Salyut 6 space station in 1979. He was on a later Soviet spaceflight, Soyuz T-16Z to the secret Soviet military space station Salyut 8T in 1989. He was stranded there in 1990 when the Soviet Union was dissolved. His other Soviet crew members returned to earth on the Soyuz T-16Z, but his place was taken up by return cargo. There have been occasional Progrez supply flights to keep him going since that time. In the 14-years since he has been on the station, he has accumulated flight pay and interest amounting to almost $ 15,000,000 American Dollars. This is held in a trust at the Lagos National Savings and Trust Association. If we can obtain access to this money, we can place a down payment with the Russian Space Authorities for a Soyuz return flight to bring him back to Earth. I am told this will cost $ 3,000,000 American Dollars. In order to access the his trust fund we need your assistance.</a>
+                                            </li>
+                                         </ul>
+                                    </div>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row answers">
+                <div class="col-lg-12">
+                    <div class="well">
+                        <h1 class="answer"></h1>
+                        <p class="confidence"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="javascripts/app.js"></script>
+    </body>

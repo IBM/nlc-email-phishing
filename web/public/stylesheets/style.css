@@ -1,0 +1,63 @@
+.header h1 {
+  color: #00B2EF;
+  font-size: 50px;
+}
+
+.input-lg {
+  height: 44px;
+}
+
+.btn-lg {
+  border: solid 1px;
+}
+.row {
+  padding-bottom: 20px;
+}
+
+.search-dropdown-menu {
+  left: inherit;
+  position: absolute;
+  top: 100%;
+  right: 0 !important;
+  z-index: 1000;
+  display: none;
+  float: left;
+  width: 800px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.search-dropdown-menu li {
+	border-bottom: 1px solid #667
+}
+.search-dropdown-menu li, .search-dropdown-menu li a {
+	overflow-wrap: break-word;
+  	word-wrap: break-word;
+  	white-space: normal;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  color: inherit;
+  background-color: #eee;
+}
+
+@media screen and (min-width: 768px) {
+  .container .jumbotron, .container-fluid .jumbotron {
+    /* padding-right: 60px; */
+    padding-left: 20px;
+  }
+}
