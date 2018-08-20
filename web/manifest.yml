@@ -1,0 +1,14 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: nlc-email-spam
+  host: nlc-email-spam
+
+  # disk_quota: 1024M
+  env:
+    CLASSIFIER_ID: e9fa7bx367-nlc-825
+
+  services:
+  - nlc-email-spam
