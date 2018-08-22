@@ -16,9 +16,8 @@ NLC_PATH = "natural-language-classifier/api/v1/classifiers/"
 
 
 def classify(s):
-    return requests.post(GATEWAY_URL + NLC_PATH + NLC_CLASSIFIER_ID +
-                         "/classify",
-                         json.dumps({'text': s}),
+    return requests.post(GATEWAY_URL + NLC_PATH + NLC_CLASSIFIER_ID + "/classify",
+                         data={'text':s},
                          auth=(NATURAL_LANGUAGE_CLASSIFIER_USERNAME,
                                NATURAL_LANGUAGE_CLASSIFIER_PASSWORD),
                          headers={'Content-Type': 'application/json'})
