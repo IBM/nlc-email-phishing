@@ -1,118 +1,154 @@
-# Watson NLC Phishing E-mails
+# Work In Progress! Please visit soon for the completed Code Pattern.
 
-<img src="https://raw.githubusercontent.com/cdimascio/watson-nlc-spam/master/assets/watson-nlc.png"  width="200"  align="right" /></br>
+# Natural Language Classifier email spam classifier
 
-Expanding upon a previous sample app, built with Watson Natural Language Classifier by Carmine DiMascio, this new sample application will be focused on phishing emails and identifying them as spam. Note: Watson Natural Language Classifier can be trained to identify various types of emails, given that it is trained with the proper dataset. In this case we will be using the Enron emails as training data.
+In this Code Pattern, we will build an app that classifies email, either labeling it as "Phishing", "Spam", or "Ham" if it does not appear suspicious. We'll be using IBM Watson Natural Language Classifier (NLC) to train a model using email examples from an [EDRM Enron email dataset](https://www.edrm.net/resources/data-sets/edrm-enron-email-data-set/). The custom NLC model can be quickly and easily build in the Web UI, deployed into our nodejs app using the [Watson Developer Cloud Nodejs SDK](https://github.com/watson-developer-cloud/node-sdk), and then run from a browser.
 
-You will learn how to train an email spam classfier, validate its accuracy, classify new texts, and run it as a web application.
+When the reader has completed this Code Pattern, they will understand how to:
 
-### Try the web demo:
-https://nlc-email-spam.mybluemix.net/
+* Build a [Watson Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier/) model using the Web UI
+* Create a nodejs app that utilizes the NLC model to classify emails as Phishing or not.
+* Use the Watson Developer Cloud SDK for nodejs.
 
-### This project contains:
+<!--Remember to dump an image in this path-->
+![](doc/source/images/architecture.png)
 
-* Training data
+## Flow
+<!--Add new flow steps based on the architecture diagram-->
+1. Step 1.
+2. Step 2.
+3. Step 3.
+4. Step 4.
+5. Step 5.
 
-* Test data
+## Included components
 
-* A Python script to measure accuracy
+* [Watson Studio](https://www.ibm.com/cloud/watson-studio): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
+* [Watson Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier/): An IBM Cloud service to interpret and classify natural language with confidence.
 
-## What you'll need
+## Featured technologies
 
-### Prerequisites
+* [Artificial Intelligence](https://medium.com/ibm-watson): Artificial intelligence can be applied to disparate solution spaces to deliver disruptive technologies.
+* [Data Science](https://medium.com/ibm-watson): Systems and scientific methods to analyze structured and unstructured data in order to extract knowledge and insights.
+* [Node.js](https://nodejs.org/): An open-source JavaScript run-time environment for executing server-side JavaScript code.
 
-* [Python](https://www.python.org/downloads/)
+<!--Update this section when the video is created-->
+# Watch the Video
 
-* [curl](http://curl.haxx.se/download.html)
+# Steps
+Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
 
-* [IBM Cloud Account](www.bluemix.net)
+## Deploy to IBM Cloud
+<!--Update the repo and tracking id-->
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/nlc-email-phishing.git)
 
-* An instance of the [Watson Natural Language Classifier service on IBM Cloud](https://console.bluemix.net/catalog/services/natural-language-classifier?hideTours=true&cm_mmc=OSocial_Tumblr-_-Watson+Core_Watson+Core+-+Platform-_-WW_WW-_-wdc-ref&cm_mmc=OSocial_Tumblr-_-Watson+Core_Watson+Core+-+Platform-_-WW_WW-_-wdc-ref&cm_mmca1=000000OF&cm_mmca2=10000409)
+1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
 
-## How is this repo organized
+<!--optional step-->
+2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
+<!-- ![](doc/source/images/toolchain-pipeline.png) -->
 
-#### Layout
+3. To see the app and service created and configured for this Code Pattern, use the IBM Cloud dashboard. The app is named `nlc-email-phishing` with a unique suffix. The following service are created:
+    * nlc-email-phishing
 
-* `data/Email-trainingdata-20k.csv` - Email training data
+## Run locally
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
 
-* `data/Email-testingdata.csv` - Email test data
+1. [Clone the repo](#1-clone-the-repo)
+1. [Create Watson NLC service with IBM Cloud](#2-create-watson-nlc-service-with-ibm-cloud)
+1. [Train the NLC model](#3-train-the-nlc-model)
+1. [Configure credentials](#4-configure-credentials)
+1. [Run the application](#5-run-the-application)
 
-* `spam.py` - A python script used to measure the accuracy of the classifier
+### 1. Clone the repo
 
-* `web/` - The node.js based [web demo](http://nlc-emailspam.mybluemix.net)
+Clone the `nlc-email-phishing` locally. In a terminal, run:
 
-#### The data
+```
+$ git clone https://github.com/IBM/nlc-email-phishing
+```
 
-Data files are a modification of the [Enron Email Dataset](https://www.edrm.net/resources/data-sets) as found on EDRM.net. The data is available under a Creative Commons Attribution 3.0 Unported License. That means you are free to share, remix, or make commercial use of the content so long as you provide attribution.
+### 2. Create Watson NLC service with IBM Cloud
 
-## How-To
+* In [Watson Studio](https://dataplatform.cloud.ibm.com/) create a New Project by clicking the `New Project` tile or use `+ New project`:
 
-See the ["Create a natural language classifier that identifies spam"](https://www.ibm.com/developerworks/library/cc-spam-classification-service-watson-nlc-bluemix-trs/index.html) developerWorks article for specific details. Be sure to use the email dataset from this repo rather than the original text messages dataset. If you are familiar with the service, follow the general outline below.
+![](https://github.com/IBM/pattern-images/blob/master/watson-studio/studio_choices.png
+)
 
-#### Create a Natural Language Classifier instance on IBM Cloud
+* Under the `Settings` tab, scroll down to `Associated services`, click `+ Add service` and choose `Watson`:
 
-* Go to IBM Cloud catalog and select [Watson Natural Language Classifier](https://console.bluemix.net/catalog/services/natural-language-classifier)
+![](https://github.com/IBM/pattern-images/blob/master/watson-studio/add_service.png)
 
-#### Train the Natural Language classifier using training data
+* Find the `Natural Language Classifier` tile and click `Add`.
 
-Training a classifier is easy and can be done in 2 ways. The first way is more technical in nature and involves directly calling the API. The second method leverages the GUI based tooling.
+> Note: the `Standard` plan allows free usage before billing begins:
 
-#### First Method
-Simply, provide training data in a Watson NLC compatible format (.csv) and POST a request to the Watson NLC `/classifiers` REST endpoint.
+```
+1 Natural Language Classifier free per month.
+1000 API calls free per month
+4 Training Events free per month
+```
 
-* Open`data/Email-trainingdata-20k.csv` to view the data format
-* Train Watson NLC
+Once the service is created the `Credentials` will be on the page. Click `Show` to make them visible and copy them for later use when you [Configure credentials](#4-configure-credentials). You can always get to the credentials by clicking the `Service credentials` on the left.
 
-    ```
-  curl -X POST -u username:password -F training_data=@Email-trainingdata-20k.csv \
-   -F training_metadata="{\"language\":\"en\",\"name\":\"My Classifier\"}" \
-  "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers"
-    ```
-#### Second Method 
+### 3. Train the NLC model
 
-Access the GUI based tooling by logging into your [IBM Cloud Dashboard](https://console.us-east.bluemix.net/dashboard/services). 
+### 4. Configure credentials
 
-In the Services area, click your Natural Language Classifier service tile to open the instance dashboard. Once in the service dashboard, click `Open tool` and upload your training data.
-
-For more information, see the [specific documentation](https://console.bluemix.net/docs/services/natural-language-classifier/tool-overview.html#managing-toolkit).
-
-#### Measuring Accuracy of your classifier
-
-* Open `spam.py` and supply values for:
-  _ `YOUR_CLASSIFIER_ID`
-  _ `YOUR_CLASSIFIER_USERNAME` \* `YOUR_CLASSIFIER_PASSWORD`
-
-* Run `pip install requests`
-
-* Run `python spam.py`
-
-## About the Data
-
-Use [Watson Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier/) to predict email spam. The training data is a public set of emails from the former company [Enron](https://en.wikipedia.org/wiki/Enron).
-
-While the [full corpus](https://en.wikipedia.org/wiki/Enron_Corpus) contains over 600k emails, this subset has been modified to just under 20k emails with spam and ham labels. More information about the Enron corpus can be found [here](https://en.wikipedia.org/wiki/Enron_Corpus).
-
-The dataset was downloaded from [EDRM](http://www.edrm.net/). Except where otherwise noted, the content posted at EDRM.net is licensed under a Creative Commons Attribution 3.0 Unported License. 
-
-That means you are free to share, remix or make commercial use of the content so long as you provide attribution. To provide attribution.
-
-## Links
+The credentials for all IBM Cloud services (Natural Language Understanding), can be found in the ``Services`` menu in IBM Cloud,
+by selecting the ``Service Credentials`` option for each service.
 
 
-## License
+Copy the [`env.sample`](env.sample) to `.env`.
 
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+```
+$ cp env.sample .env
+```
+Edit the `.env` file with the necessary settings.
 
-Copyright 2015-2018 Zia Mohammad
+#### `env.sample:`
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+```
+# Replace the credentials here with your own.
+# Rename this file to .env before running run.py.
 
-    http://www.apache.org/licenses/LICENSE-2.0
+NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
+NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
+NLC_CLASSIFIER=<add_NLC_classifier>
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+### 6. Run the application
+1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
+1. Start the app by running `npm install`, followed by `npm start`.
+1. Use the app at `localhost:3000`.
+> Note: server host can be changed as required in server.js and `PORT` can be set in `.env`.
+
+<!--Add a section that explains to the reader what typical output looks like, include screenshots -->
+
+# Sample output
+
+![](doc/source/images/sample_output.png)
+
+<!--Include any troubleshooting tips (driver issues, etc)-->
+
+# Troubleshooting
+
+<!--Include any relevant links-->
+
+# Links
+
+* [Live web demo](https://nlc-email-spam.mybluemix.net/)
+* [Demo on Youtube]()
+* [Watson Node.js SDK](https://github.com/watson-developer-cloud/node-sdk)
+
+<!-- pick the relevant ones from below -->
+# Learn more
+
+* **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+* **Data Analytics Code Patterns**: Enjoyed this Code Pattern? Check out our other [Data Analytics Code Patterns](https://developer.ibm.com/code/technologies/data-science/)
+* **AI and Data Code Pattern Playlist**: Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
+* **With Watson**: Want to take your Watson app to the next level? Looking to utilize Watson Brand assets? [Join the With Watson program](https://www.ibm.com/watson/with-watson/) to leverage exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.
+* **Data Science Experience**: Master the art of data science with IBM's [Data Science Experience](https://datascience.ibm.com/)
+
+# License
+[Apache 2.0](LICENSE)
