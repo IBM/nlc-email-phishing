@@ -1,9 +1,10 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "private": true,
+  "name": "nlc-email-spam",
+  "description": "A server using Watson Natural Language Classifier to classify text as either spam or not spam (Ham)",
+  "version": "0.0.1",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

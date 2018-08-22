@@ -1,2 +1,2 @@
-web/node_modules
-web/.env
+server/node_modules
+server/.env

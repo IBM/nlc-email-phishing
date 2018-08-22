@@ -1,3 +1,23 @@
+/**
+* Copyright 2017 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License.
+*/
+
+/*jslint node: true*/
+/*jslint es6 */
+"use strict";
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,7 +29,6 @@ var classify = require('./routes/classify');
 
 var app = express();
 
-// uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -49,4 +68,9 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+
+app.listen(port, function () {
+    console.log("Server running on port: %d", port);
+});
+//module.exports = app;
