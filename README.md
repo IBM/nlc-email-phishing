@@ -2,7 +2,7 @@
 
 # Natural Language Classifier email spam classifier
 
-In this Code Pattern, we will build an app that classifies email, either labeling it as "Phishing", "Spam", or "Ham" if it does not appear suspicious. We'll be using IBM Watson Natural Language Classifier (NLC) to train a model using email examples from an [EDRM Enron email dataset](https://www.edrm.net/resources/data-sets/edrm-enron-email-data-set/). The custom NLC model can be quickly and easily build in the Web UI, deployed into our nodejs app using the [Watson Developer Cloud Nodejs SDK](https://github.com/watson-developer-cloud/node-sdk), and then run from a browser.
+In this Code Pattern, we will build an app that classifies email, either labeling it as "Phishing", "Spam", or "Ham" if it does not appear suspicious. We'll be using IBM Watson Natural Language Classifier (NLC) to train a model using email examples from an [EDRM Enron email dataset](https://www.edrm.net/resources/data-sets/edrm-enron-email-data-set/). The custom NLC model can be quickly and easily built in the Web UI, deployed into our nodejs app using the [Watson Developer Cloud Nodejs SDK](https://github.com/watson-developer-cloud/node-sdk), and then run from a browser.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
@@ -36,23 +36,6 @@ When the reader has completed this Code Pattern, they will understand how to:
 # Watch the Video
 
 # Steps
-Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
-
-## Deploy to IBM Cloud
-<!--Update the repo and tracking id-->
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/nlc-email-phishing.git)
-
-1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
-
-<!--optional step-->
-2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
-<!-- ![](doc/source/images/toolchain-pipeline.png) -->
-
-3. To see the app and service created and configured for this Code Pattern, use the IBM Cloud dashboard. The app is named `nlc-email-phishing` with a unique suffix. The following service are created:
-    * nlc-email-phishing
-
-## Run locally
-> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
 
 1. [Clone the repo](#1-clone-the-repo)
 1. [Create Watson NLC service with IBM Cloud](#2-create-watson-nlc-service-with-ibm-cloud)
@@ -93,11 +76,32 @@ Once the service is created the `Credentials` will be on the page. Click `Show` 
 
 ### 3. Train the NLC model
 
+* In your project, under the `Assets` tab and `Models` click `+ New Natural Language Classifier model` to bring up the `New Classifier` GUI page:
+
+![](https://github.com/IBM/pattern-images/tree/master/watson-studio/NewNLCclassifierGUI.png)
+
+* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to this repo. Choose both `data/Email-trainingdata- 20k.csv` and `Email-testingdata.json`.
+
+* Drag and drop the `Email-trainingdata- 20k.csv` file you uploaded to the `Create a Class` box:
+
+![video-to-gif](doc/source/videos/dragNdropDataNLC.gif)
+
+* Click the `Train model` button to begin training. The model will take around an hour to train.
+
+* To check the status of the model, and access it after it trains, go to your project in the `Assets` tab of the `Models` section. The model will show up when it is ready. Double click to see the `Overview` tab.
+
+![](doc/source/images/NLCclassifierOverviewTab.png)
+
+* The `Overview` tab top line has the `ModelID`. Click the copy icon and save this for the [Configure credentials](#4-configure-credentials) step.
+
+* Click the `Test` tab and enter a phrase from an email to test the classifier. For example, "Can you please send your password?" is classified with 0.81 confidence as Phishing.
+
+* Click the `Implementation` tab to see how to use the classifier with Curl, Java, Node, or Python.
+
 ### 4. Configure credentials
 
-The credentials for all IBM Cloud services (Natural Language Understanding), can be found in the ``Services`` menu in IBM Cloud,
-by selecting the ``Service Credentials`` option for each service.
-
+The credentials for all IBM Cloud services (Natural Language Understanding), can be found in the ``Services`` menu in IBM Cloud, by selecting the ``Service Credentials`` option for each service.
+The `NLC_CLASSIFIER` is the `ModelID` from [step 3](#3-train-the-nlc-model) above.
 
 Copy the [`env.sample`](env.sample) to `.env`.
 
@@ -110,30 +114,46 @@ Edit the `.env` file with the necessary settings.
 
 ```
 # Replace the credentials here with your own.
-# Rename this file to .env before running run.py.
+# Rename this file to .env before running 'npm start'.
 
 NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
 NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
 NLC_CLASSIFIER=<add_NLC_classifier>
 ```
 
-### 6. Run the application
+### 5. Run the application
+
+Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
+
+#### Deploy to IBM Cloud
+
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/nlc-email-phishing.git)
+
+1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
+
+1. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
+
+1. To see the app and service created and configured for this Code Pattern, use the IBM Cloud dashboard. The app is named `nlc-email-phishing` with a unique suffix.
+
+1. You will need to add the `ModelID` from [step 3](#3-train-the-nlc-model) above to the application. After accessing your app from the dashboard, click on ``Runtime`` on the menu and navigate to the ``Environment variables`` tab.
+
+1. Replace `placeholder` for the `NLC_CLASSIFIER` variable with your `ModelID` value and click `Save`.
+
+1. From the `Overview` tab click the &#8942; icon, then `Restart`. After the app restarts you can access it from the URL at `Visit App URL`.
+
+## Run locally
+
 1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
 1. Start the app by running `npm install`, followed by `npm start`.
 1. Use the app at `localhost:3000`.
-> Note: server host can be changed as required in server.js and `PORT` can be set in `.env`.
-
-<!--Add a section that explains to the reader what typical output looks like, include screenshots -->
 
 # Sample output
 
-![](doc/source/images/sample_output.png)
+![](doc/source/images/nlc-email-phishing-sampleOutput.png)
 
-<!--Include any troubleshooting tips (driver issues, etc)-->
-
+<!--
 # Troubleshooting
-
-<!--Include any relevant links-->
+-->
 
 # Links
 
@@ -141,7 +161,6 @@ NLC_CLASSIFIER=<add_NLC_classifier>
 * [Demo on Youtube]()
 * [Watson Node.js SDK](https://github.com/watson-developer-cloud/node-sdk)
 
-<!-- pick the relevant ones from below -->
 # Learn more
 
 * **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
