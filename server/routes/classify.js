@@ -26,14 +26,14 @@ const request = require('request');
 const NLC = require('watson-developer-cloud/natural-language-classifier/v1');
 const vcapServices = require('vcap_services');
 
-var classifierId = process.env.NLC_CLASSIFIER
+var classifierId = process.env.CLASSIFIER_ID
 
 var  creds = creds()
 if (creds == null){
   console.log("Failure to create creds")
 }
 
-console.log("classifierId:")
+console.log("CLASSIFIER_ID:")
 console.log(classifierId)
 
 router.post('/', function(req, res, next) {
