@@ -1,0 +1,15 @@
+declared-services:
+  nlc-email-phishing:
+    label: natural_language_classifier
+    plan: standard
+applications:
+- path: ./server
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: nlc-email-phishing
+  disk_quota: 1024M
+  env:
+    CLASSIFIER_ID: placeholder
+  services:
+  - nlc-email-phishing
