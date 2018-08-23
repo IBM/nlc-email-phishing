@@ -72,7 +72,9 @@ $ git clone https://github.com/IBM/nlc-email-phishing
 4 Training Events free per month
 ```
 
-Once the service is created the `Credentials` will be on the page. Click `Show` to make them visible and copy them for later use when you [Configure credentials](#4-configure-credentials). You can always get to the credentials by clicking the `Service credentials` on the left.
+* Give the NLC service a name. This name will be used later if you `Deploy to IBM Cloud` when you add the service under `Connections`.
+
+* Once the service is created the `Credentials` will be on the page. Click `Show` to make them visible and copy them for later use when you [Configure credentials](#4-configure-credentials). You can always get to the credentials by clicking the `Service credentials` on the left.
 
 ### 3. Train the NLC model
 
@@ -100,8 +102,10 @@ Once the service is created the `Credentials` will be on the page. Click `Show` 
 
 ### 4. Configure credentials
 
+> Note: If when you [Run the application](#5-run-the-application) you will `Deploy to IBM Cloud`, you can skip this step.
+
 The credentials for all IBM Cloud services (Natural Language Understanding), can be found in the ``Services`` menu in IBM Cloud, by selecting the ``Service Credentials`` option for each service.
-The `NLC_CLASSIFIER` is the `ModelID` from [step 3](#3-train-the-nlc-model) above.
+The `CLASSIFIER_ID` is the `ModelID` from [step 3](#3-train-the-nlc-model) above.
 
 Copy the [`env.sample`](env.sample) to `.env`.
 
@@ -118,7 +122,7 @@ Edit the `.env` file with the necessary settings.
 
 NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
 NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
-NLC_CLASSIFIER=<add_NLC_classifier>
+CLASSIFIER_ID=<add_ModelID>
 ```
 
 ### 5. Run the application
@@ -135,11 +139,13 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 
 1. To see the app and service created and configured for this Code Pattern, use the IBM Cloud dashboard. The app is named `nlc-email-phishing` with a unique suffix.
 
-1. You will need to add the `ModelID` from [step 3](#3-train-the-nlc-model) above to the application. After accessing your app from the dashboard, click on ``Runtime`` on the menu and navigate to the ``Environment variables`` tab.
+1. You will need to add the `ModelID` from [step 3](#3-train-the-nlc-model) above and the NLC credentials from [Configure credentials](#4-configure-credentials) to the application. After accessing your app from the dashboard, click on ``Runtime`` on the menu and navigate to the ``Environment variables`` tab.
 
-1. Replace `placeholder` for the `NLC_CLASSIFIER` variable with your `ModelID` value and click `Save`.
+1. Replace `placeholder` for the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_USERNAME`, and `NATURAL_LANGUAGE_CLASSIFIER_PASSWORD` variables with your `ModelID` and credential values,  and click `Save`.
 
-1. From the `Overview` tab click the &#8942; icon, then `Restart`. After the app restarts you can access it from the URL at `Visit App URL`.
+![](doc/source/images/NLCemailPhishENVvars.png)
+
+1. After saving the environment variables, the app will restart. After the app restarts you can access it from the URL at `Visit App URL`.
 
 ## Run locally
 

@@ -1,0 +1,11 @@
+applications:
+- path: ./server
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: nlc-email-phishing
+  disk_quota: 1024M
+  env:
+    CLASSIFIER_ID: placeholder
+    NATURAL_LANGUAGE_CLASSIFIER_USERNAME: placeholder
+    NATURAL_LANGUAGE_CLASSIFIER_PASSWORD: placeholder
