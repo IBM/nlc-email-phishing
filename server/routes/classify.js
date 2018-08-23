@@ -24,16 +24,12 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const NLC = require('watson-developer-cloud/natural-language-classifier/v1');
-const vcapServices = require('vcap_services');
 
-var classifierId = process.env.NLC_CLASSIFIER
+var classifierId = process.env.CLASSIFIER_ID
+var uname = process.env.NATURAL_LANGUAGE_CLASSIFIER_USERNAME
+var pword = process.env.NATURAL_LANGUAGE_CLASSIFIER_PASSWORD
 
-var  creds = creds()
-if (creds == null){
-  console.log("Failure to create creds")
-}
-
-console.log("classifierId:")
+console.log("CLASSIFIER_ID:")
 console.log(classifierId)
 
 router.post('/', function(req, res, next) {
@@ -44,7 +40,7 @@ function classify(req, res) {
   console.log("Classifying:")
   console.log(req.body);
 
-  var nlc = new NLC(creds);
+  var nlc = new NLC({username: uname, password: pword});
 
   nlc.classify({
     text: req.body.text,
@@ -56,22 +52,6 @@ function classify(req, res) {
       res.json(response)
     }
   })
-}
-
-function creds() {
-  // Preference is .env file
-  if (process.env.NATURAL_LANGUAGE_CLASSIFIER_USERNAME) {
-      var uname = process.env.NATURAL_LANGUAGE_CLASSIFIER_USERNAME
-      var pword = process.env.NATURAL_LANGUAGE_CLASSIFIER_PASSWORD
-  return {username: uname, password: pword}
-
-  } else {
-  // Extract Bluemix creds for Watson nlc service
-  var VCAP = process.env.VCAP_SERVICES
-    if (VCAP) {
-      return (JSON.parse(VCAP)).natural_language_classifier[0].credentials;
-   }
-  }
 }
 
 module.exports = router;
