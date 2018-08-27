@@ -30,8 +30,9 @@ When the reader has completed this Code Pattern, they will understand how to:
 * [Data Science](https://medium.com/ibm-watson): Systems and scientific methods to analyze structured and unstructured data in order to extract knowledge and insights.
 * [Node.js](https://nodejs.org/): An open-source JavaScript run-time environment for executing server-side JavaScript code.
 
-<!--Update this section when the video is created-->
 # Watch the Video
+
+[![](https://i.ytimg.com/vi/Pk1MSlZenms/0.jpg)](https://youtu.be/Pk1MSlZenms)
 
 # Steps
 
@@ -162,7 +163,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 # Links
 
 * [Live web demo](https://nlc-email-spam.mybluemix.net/)
-* [Demo on Youtube]()
+* [Demo on Youtube](https://youtu.be/Pk1MSlZenms)
 * [Watson Node.js SDK](https://github.com/watson-developer-cloud/node-sdk)
 
 # Learn more
