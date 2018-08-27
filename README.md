@@ -32,7 +32,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 
 # Watch the Video
 
-[![](https://i.ytimg.com/vi/Pk1MSlZenms/0.jpg)](https://youtu.be/Pk1MSlZenms)
+[![](https://i.ytimg.com/vi/vnnUYAi9Zy4/0.jpg)](https://youtu.be/vnnUYAi9Zy4)
 
 # Steps
 
@@ -163,7 +163,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 # Links
 
 * [Live web demo](https://nlc-email-spam.mybluemix.net/)
-* [Demo on Youtube](https://youtu.be/Pk1MSlZenms)
+* [Demo on Youtube](https://youtu.be/vnnUYAi9Zy4)
 * [Watson Node.js SDK](https://github.com/watson-developer-cloud/node-sdk)
 
 # Learn more
