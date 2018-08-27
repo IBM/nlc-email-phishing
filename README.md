@@ -10,16 +10,14 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Create a nodejs app that utilizes the NLC model to classify emails as Phishing or not.
 * Use the Watson Developer Cloud SDK for nodejs.
 
-<!--Remember to dump an image in this path-->
 ![](doc/source/images/architecture.png)
 
 ## Flow
-<!--Add new flow steps based on the architecture diagram-->
-1. Step 1.
-2. Step 2.
-3. Step 3.
-4. Step 4.
-5. Step 5.
+
+1. User interacts with Natural Language Classifier (NLC) GUI to train the model.
+2. [EDRM](https://www.edrm.net/resources/data-sets/edrm-enron-email-data-set/) data is loaded to the NLC service to provide sample emails for training.
+3. User sends email text to the application to have it classified.
+4. App uses Watson Natural Language Classifier to determine if text is phishing, spam, or ham.
 
 ## Included components
 
