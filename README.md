@@ -81,9 +81,9 @@ $ git clone https://github.com/IBM/nlc-email-phishing
 
 ![](https://github.com/IBM/pattern-images/tree/master/watson-studio/NewNLCclassifierGUI.png)
 
-* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to this repo. Choose both `data/Email-trainingdata- 20k.csv` and `Email-testingdata.json`.
+* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to this repo. Choose both `data/Email-trainingdata-20k.csv` and `Email-testingdata.json`.
 
-* Drag and drop the `Email-trainingdata- 20k.csv` file you uploaded to the `Create a Class` box:
+* Drag and drop the `Email-trainingdata-20k.csv` file you uploaded to the `Create a Class` box:
 
 ![video-to-gif](doc/source/videos/dragNdropDataNLC.gif)
 
