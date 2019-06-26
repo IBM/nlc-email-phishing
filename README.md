@@ -8,9 +8,9 @@ When the reader has completed this Code Pattern, they will understand how to:
 * Create a nodejs app that utilizes the NLC model to classify emails as Phishing or not.
 * Use the Watson Developer Cloud SDK for nodejs.
 
-![](doc/source/images/architecture.png)
-
 ## Flow
+
+![arch](doc/source/images/architecture.png)
 
 1. User interacts with Natural Language Classifier (NLC) GUI to train the model.
 2. [EDRM](https://www.edrm.net/resources/data-sets/edrm-enron-email-data-set/) data is loaded to the NLC service to provide sample emails for training.
@@ -21,149 +21,165 @@ When the reader has completed this Code Pattern, they will understand how to:
 
 * [Watson Studio](https://www.ibm.com/cloud/watson-studio): Analyze data using RStudio, Jupyter, and Python in a configured, collaborative environment that includes IBM value-adds, such as managed Spark.
 * [Watson Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier/): An IBM Cloud service to interpret and classify natural language with confidence.
-
-## Featured technologies
-
-* [Artificial Intelligence](https://medium.com/ibm-watson): Artificial intelligence can be applied to disparate solution spaces to deliver disruptive technologies.
-* [Data Science](https://medium.com/ibm-watson): Systems and scientific methods to analyze structured and unstructured data in order to extract knowledge and insights.
 * [Node.js](https://nodejs.org/): An open-source JavaScript run-time environment for executing server-side JavaScript code.
 
-# Watch the Video
+## Watch the Video
 
-[![](https://i.ytimg.com/vi/vnnUYAi9Zy4/0.jpg)](https://youtu.be/vnnUYAi9Zy4)
+[![video](https://i.ytimg.com/vi/vnnUYAi9Zy4/0.jpg)](https://youtu.be/vnnUYAi9Zy4)
 
-# Steps
+## Steps
 
 1. [Clone the repo](#1-clone-the-repo)
-1. [Create Watson NLC service with IBM Cloud](#2-create-watson-nlc-service-with-ibm-cloud)
-1. [Train the NLC model](#3-train-the-nlc-model)
-1. [Configure credentials](#4-configure-credentials)
+1. [Create IBM Cloud services](#2-create-ibm-cloud-services)
+1. [Create a Watson Studio project](#3-create-a-watson-studio-project)
+1. [Train the NLC model](#4-train-the-nlc-model)
 1. [Run the application](#5-run-the-application)
 
 ### 1. Clone the repo
 
-Clone the `nlc-email-phishing` locally. In a terminal, run:
+Clone the `nlc-email-phishing` repo locally. In a terminal, run:
 
-```
-$ git clone https://github.com/IBM/nlc-email-phishing
-```
-
-### 2. Create Watson NLC service with IBM Cloud
-
-* In [Watson Studio](https://dataplatform.cloud.ibm.com/) create a New Project by clicking the `New Project` tile or use `+ New project`:
-
-![](https://github.com/IBM/pattern-images/blob/master/watson-studio/studio_choices.png
-)
-
-* Under the `Settings` tab, scroll down to `Associated services`, click `+ Add service` and choose `Watson`:
-
-![](https://github.com/IBM/pattern-images/blob/master/watson-studio/add_service.png)
-
-* Find the `Natural Language Classifier` tile and click `Add`.
-
-> Note: the `Standard` plan allows free usage before billing begins:
-
-```
-1 Natural Language Classifier free per month.
-1000 API calls free per month
-4 Training Events free per month
+```bash
+git clone https://github.com/IBM/nlc-email-phishing
 ```
 
-* Give the NLC service a name. This name will be used later if you `Deploy to IBM Cloud` when you add the service under `Connections`.
+### 2. Create IBM Cloud services
 
-* Once the service is created the `Credentials` will be on the page. Click `Show` to make them visible and copy them for later use when you [Configure credentials](#4-configure-credentials). You can always get to the credentials by clicking the `Service credentials` on the left.
+Create the following service:
 
-### 3. Train the NLC model
+* [Natural Language Classifier](https://cloud.ibm.com/catalog/services/natural-language-classifier)
 
-* In your project, under the `Assets` tab and `Models` click `+ New Natural Language Classifier model` to bring up the `New Classifier` GUI page:
+### 3. Create a Watson Studio project
 
-![](https://github.com/IBM/pattern-images/tree/master/watson-studio/NewNLCclassifierGUI.png)
+* Log into IBM's [Watson Studio](https://dataplatform.cloud.ibm.com). Once in, you'll land on the dashboard.
 
-* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to this repo. Choose both `data/Email-trainingdata-20k.csv` and `Email-testingdata.json`.
+* Create a new project by clicking `+ New project` and choosing `Data Science`:
+
+  ![studio project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/new-project-data-science.png)
+
+* Enter a name for the project name and click `Create`.
+
+* **NOTE**: By creating a project in Watson Studio a free tier `Object Storage` service and `Watson Machine Learning` service will be created in your IBM Cloud account. Select the `Free` storage type to avoid fees.
+
+  ![studio-new-project](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/new-project-data-science-name.png)
+
+* Upon a successful project creation, you are taken to a dashboard view of your project. Take note of the `Assets` and `Settings` tabs, we'll be using them to associate our project with any external assets (datasets and notebooks) and any IBM cloud services.
+
+  ![studio-project-dashboard](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/overview-empty.png)
+
+### 4. Train the NLC model
+
+The data used in this example from an [EDRM Enron email dataset](http://nlp.cs.aueb.gr/software.html) and a cleaned version we'll use is available in the repo under [data/Email-trainingdata-20k.csv](data/Email-trainingdata-20k.csv). We'll now train an NLC model using this data.
+
+* From the new project `Overview` panel, click `+ Add to project` on the top right and choose the `Natural Language Classifier` asset type.
+
+  ![add-nlc-asset](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/add-assets-nlc.png)
+
+* A new instance of the NLC tool will launch.
+
+  ![new-nlc-model](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/training-nlc-new.png)
+
+* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to the cloned repo. Choose both [`data/Email-trainingdata-20k.csv`](`data/Email-trainingdata-20k.csv`) and [`Email-testingdata.json`](`Email-testingdata.json`).
 
 * Drag and drop the `Email-trainingdata-20k.csv` file you uploaded to the `Create a Class` box:
 
-![video-to-gif](doc/source/videos/dragNdropDataNLC.gif)
+  ![video-to-gif](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/nlc-add-data-to-model.gif)
 
 * Click the `Train model` button to begin training. The model will take around an hour to train.
 
 * To check the status of the model, and access it after it trains, go to your project in the `Assets` tab of the `Models` section. The model will show up when it is ready. Double click to see the `Overview` tab.
 
-![](doc/source/images/NLCclassifierOverviewTab.png)
+  ![nlc-model-overview](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/nlc-model-overview.png)
 
-* The `Overview` tab top line has the `ModelID`. Click the copy icon and save this for the [Configure credentials](#4-configure-credentials) step.
+* The `Overview` tab top line has the `Model ID`. Click the copy icon and save this for the [Configure credentials](#4-configure-credentials) step.
 
-* Click the `Test` tab and enter a phrase from an email to test the classifier. For example, "Can you please send your password?" is classified with 0.81 confidence as Phishing.
+* Click the `Test` tab and enter a phrase from an email to test the classifier. For example, *"Can you please send your password?"* is classified with **0.81** confidence as Phishing.
 
 * Click the `Implementation` tab to see how to use the classifier with Curl, Java, Node, or Python.
 
-### 4. Configure credentials
-
-> Note: If when you [Run the application](#5-run-the-application) you will `Deploy to IBM Cloud`, you can skip this step.
-
-The credentials for all IBM Cloud services (Natural Language Understanding), can be found in the ``Services`` menu in IBM Cloud, by selecting the ``Service Credentials`` option for each service.
-The `CLASSIFIER_ID` is the `ModelID` from [step 3](#3-train-the-nlc-model) above.
-
-Create a file named `.env` with the necessary settings:
-
-```
-# Replace the credentials here with your own.
-NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
-NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
-CLASSIFIER_ID=<add_ModelID>
-```
-
 ### 5. Run the application
 
-Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
+Follow the steps below for deploying the application:
 
-#### Deploy to IBM Cloud
+* [Run on IBM Cloud](#run-on-ibm-cloud)
 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/nlc-email-phishing.git)
+  **OR**
 
-1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
+* [Run locally](#run-locally)
 
-1. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
+#### Run on IBM Cloud
 
-1. To see the app and service created and configured for this Code Pattern, use the IBM Cloud dashboard. The app is named `nlc-email-phishing` with a unique suffix.
+* Press the `Deploy to IBM Cloud` button below.
 
-1. You will need to add the `ModelID` from [step 3](#3-train-the-nlc-model) above and the NLC credentials from [Configure credentials](#4-configure-credentials) to the application. After accessing your app from the dashboard, click on ``Runtime`` on the menu and navigate to the ``Environment variables`` tab.
+<p align="center">
+    <a href="https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/nlc-email-phishing.git">
+    <img src="https://cloud.ibm.com/devops/setup/deploy/button_x2.png" alt="Deploy to IBM Cloud">
+    </a>
+</p>
 
-1. Replace `placeholder` for the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_USERNAME`, and `NATURAL_LANGUAGE_CLASSIFIER_PASSWORD` variables with your `ModelID` and credential values,  and click `Save`.
+* From the IBM Cloud deployment page click the `Deploy` button.
 
-![](doc/source/images/NLCemailPhishENVvars.png)
+* From the *Toolchains* menu, click the *Delivery Pipeline* to watch while the app is deployed. Once deployed, the app can be viewed by clicking *View app*.
 
-1. After saving the environment variables, the app will restart. After the app restarts you can access it from the URL at `Visit App URL`.
+* The app and service can be viewed in the [IBM Cloud dashboard](https://cloud.ibm.com/resources). The app will be named `nlc-email-phishing`, with a unique suffix.
 
-## Run locally
+* We now need to add a few environment variables to the application's runtime so the right classifier service and model are used. Click on the application from the dashboard to view its settings.
 
-1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
-1. Start the app by running `npm install`, followed by `npm start`.
-1. Use the app at `localhost:3000`.
+* Once viewing the application, click the `Runtime` option on the menu and navigate to the `Environment Variables` section.
 
-# Sample output
+* Update the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_USERNAME`, and `NATURAL_LANGUAGE_CLASSIFIER_PASSWORD` variables with your `Model ID` from [Step 4](#4-train-the-nlc-model)  and NLC service credentials from [Step 2](#2-create-ibm-cloud-services). Click `Save`.
 
-![](doc/source/images/nlc-email-phishing-sampleOutput.png)
+  ![env vars](doc/source/images/NLCemailPhishENVvars.png)
 
-<!--
-# Troubleshooting
--->
+1. After saving the environment variables, the app will restart. After the app restarts you can access it by clicking the *Visit App URL* button.
 
-# Links
+#### Run locally
+
+* In the root of the project create a file named `.env`. A [sample](server/env.example) is provided and a snippet is shown below.
+
+  ```bash
+  # Replace the credentials here with your own.
+  NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
+  NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
+  CLASSIFIER_ID=<add_ModelID>
+  ```
+
+* Update the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_USERNAME`, and `NATURAL_LANGUAGE_CLASSIFIER_PASSWORD` variables with your `Model ID` from [Step 4](#4-train-the-nlc-model)  and NLC service credentials from [Step 2](#2-create-ibm-cloud-services).
+
+* Ensure [Node.js](https://nodejs.org/en/) is installed.
+
+* Install the app dependencies by running:
+
+  ```bash
+  npm install
+  ```
+
+* Start the app by running:
+
+  ```bash
+  npm start
+  ```
+
+* Open a browser and point to [`localhost:3000`](http://localhost:3000).
+
+## Sample output
+
+![output](doc/source/images/nlc-email-phishing-sampleOutput.png)
+
+## Links
 
 * [Live web demo](https://nlc-email-spam.mybluemix.net/)
 * [Demo on Youtube](https://youtu.be/vnnUYAi9Zy4)
 * [Watson Node.js SDK](https://github.com/watson-developer-cloud/node-sdk)
 
-# Learn more
+## Learn more
 
 * **Artificial Intelligence Code Patterns**: Enjoyed this Code Pattern? Check out our other [AI Code Patterns](https://developer.ibm.com/technologies/artificial-intelligence/).
 * **Data Analytics Code Patterns**: Enjoyed this Code Pattern? Check out our other [Data Analytics Code Patterns](https://developer.ibm.com/technologies/data-science/)
 * **AI and Data Code Pattern Playlist**: Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
-* **With Watson**: Want to take your Watson app to the next level? Looking to utilize Watson Brand assets? [Join the With Watson program](https://www.ibm.com/watson/with-watson/) to leverage exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.
-* **Data Science Experience**: Master the art of data science with IBM's [Data Science Experience](https://www.ibm.com/cloud/watson-studio)
 
-# License
+## License
+
 This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
 [Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
