@@ -69,7 +69,7 @@ Create the following service:
 
 ### 4. Train the NLC model
 
-The data used in this example from an [EDRM Enron email dataset](http://nlp.cs.aueb.gr/software.html) and a cleaned version we'll use is available in the repo under [data/Email-trainingdata-20k.csv](data/Email-trainingdata-20k.csv). We'll now train an NLC model using this data.
+The data used in this example is from an [EDRM Enron email dataset](http://nlp.cs.aueb.gr/software.html) and a cleaned version we'll use is available in the repo under [data/Email-trainingdata-20k.csv](data/Email-trainingdata-20k.csv). We'll now train an NLC model using this data.
 
 * From the new project `Overview` panel, click `+ Add to project` on the top right and choose the `Natural Language Classifier` asset type.
 
@@ -91,7 +91,7 @@ The data used in this example from an [EDRM Enron email dataset](http://nlp.cs.a
 
   ![nlc-model-overview](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/nlc-model-overview.png)
 
-* The `Overview` tab top line has the `Model ID`. Click the copy icon and save this for the [Configure credentials](#4-configure-credentials) step.
+* The first line of the `Overview` tab contains the `Model ID`, remember this value as we'll need it in the next step.
 
 * Click the `Test` tab and enter a phrase from an email to test the classifier. For example, *"Can you please send your password?"* is classified with **0.81** confidence as Phishing.
 
