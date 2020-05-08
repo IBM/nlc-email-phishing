@@ -3,9 +3,9 @@ applications:
   memory: 512M
   instances: 1
   domain: mybluemix.net
-  name: nlc-email-phishing
+  name: pmistry-nlc-emailclassifier-app
   disk_quota: 1024M
   env:
-    CLASSIFIER_ID: placeholder
-    NATURAL_LANGUAGE_CLASSIFIER_USERNAME: placeholder
-    NATURAL_LANGUAGE_CLASSIFIER_PASSWORD: placeholder
+   CLASSIFIER_ID: bb4e44x730-nlc-88
+   NATURAL_LANGUAGE_CLASSIFIER_APIKEY: UUnZfFUffO3kyz-S7comvVkPpZIc_hDCF-ddX6wqQhDu
+   NATURAL_LANGUAGE_CLASSIFIER_URL: https://api.us-south.natural-language-classifier.watson.cloud.ibm.com/instances/d255f13b-0652-4c02-8f41-2caf80abc9d6

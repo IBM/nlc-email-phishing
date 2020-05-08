@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 IBM Corp. All Rights Reserved.
+ * Copyright 2020 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the 'License'); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,11 +23,13 @@ require('dotenv').config({
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const NLC = require('watson-developer-cloud/natural-language-classifier/v1');
+const NLC = require('ibm-watson/natural-language-classifier/v1');
+const { IamAuthenticator } = require('ibm-watson/auth');
+
 
 var classifierId = process.env.CLASSIFIER_ID
-var uname = process.env.NATURAL_LANGUAGE_CLASSIFIER_USERNAME
-var pword = process.env.NATURAL_LANGUAGE_CLASSIFIER_PASSWORD
+var apikey = process.env.NATURAL_LANGUAGE_CLASSIFIER_APIKEY
+var url = process.env.NATURAL_LANGUAGE_CLASSIFIER_URL
 
 console.log("CLASSIFIER_ID:")
 console.log(classifierId)
@@ -40,16 +42,22 @@ function classify(req, res) {
   console.log("Classifying:")
   console.log(req.body);
 
-  var nlc = new NLC({username: uname, password: pword});
+  var nlc = new NLC({
+    authenticator: new IamAuthenticator({
+      apikey: apikey,
+    }),
+    url: url,
+  });
 
   nlc.classify({
     text: req.body.text,
-    classifier_id: classifierId
+    classifierId: classifierId
+
   }, function(err,response){
     if (err) {
       console.log(err)
     } else {
-      res.json(response)
+      res.json(response.result)
     }
   })
 }
