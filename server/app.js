@@ -73,4 +73,4 @@ const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 app.listen(port, function () {
     console.log("Server running on port: %d", port);
 });
-//module.exports = app;
+module.exports = app;
