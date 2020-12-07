@@ -56,6 +56,7 @@ function classify(req, res) {
   }, function(err,response){
     if (err) {
       console.log(err)
+      res.json(err.body)
     } else {
       res.json(response.result)
     }
