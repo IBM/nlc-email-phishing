@@ -40,7 +40,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 Clone the `nlc-email-phishing` repo locally. In a terminal, run:
 
 ```bash
-git clone https://github.com/IBM-Developer-Austin/nlc-email-phishing.git
+git clone https://github.com/IBM/nlc-email-phishing.git
 ```
 
 ### 2. Create IBM Cloud services
