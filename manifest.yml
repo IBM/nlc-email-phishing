@@ -2,7 +2,6 @@ applications:
 - path: ./server
   memory: 512M
   instances: 1
-  domain: mybluemix.net
   name: nlc-email-phishing-ADD-NAME
   disk_quota: 1024M
   env:
