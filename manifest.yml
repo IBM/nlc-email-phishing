@@ -2,7 +2,7 @@ applications:
 - path: ./server
   memory: 512M
   instances: 1
-  name: nlc-email-phishing
+  name: nlc-email-phishing-ADD-NAME
   disk_quota: 1024M
   env:
     CLASSIFIER_ID: placeholder
