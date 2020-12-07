@@ -40,7 +40,7 @@ When the reader has completed this Code Pattern, they will understand how to:
 Clone the `nlc-email-phishing` repo locally. In a terminal, run:
 
 ```bash
-git clone https://github.com/IBM/nlc-email-phishing
+git clone https://github.com/IBM-Developer-Austin/nlc-email-phishing.git
 ```
 
 ### 2. Create IBM Cloud services
@@ -79,7 +79,7 @@ The data used in this example is from an [EDRM Enron email dataset](http://nlp.c
 
   ![new-nlc-model](https://raw.githubusercontent.com/IBM/pattern-utils/master/watson-studio/training-nlc-new.png)
 
-* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to the cloned repo. Choose both [`data/Email-trainingdata-20k.csv`](`data/Email-trainingdata-20k.csv`) and [`Email-testingdata.json`](`Email-testingdata.json`).
+* Add the data to your project by clicking the `Browse` button in the right-hand `Upload to project` section and browsing to the cloned repo. Choose [`data/Email-trainingdata-20k.csv`](`data/Email-trainingdata-20k.csv`).
 
 * Drag and drop the `Email-trainingdata-20k.csv` file you uploaded to the `Create a Class` box:
 
@@ -139,12 +139,12 @@ Follow the steps below for deploying the application:
 
   ```bash
   # Replace the credentials here with your own.
-  NATURAL_LANGUAGE_CLASSIFIER_USERNAME=<add_NLC_username>
-  NATURAL_LANGUAGE_CLASSIFIER_PASSWORD=<add_NLC_password>
   CLASSIFIER_ID=<add_ModelID>
+  NATURAL_LANGUAGE_CLASSIFIER_APIKEY=<add_API_key>
+  NATURAL_LANGUAGE_CLASSIFIER_URL=<add_NLC_url>
   ```
 
-* Update the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_USERNAME`, and `NATURAL_LANGUAGE_CLASSIFIER_PASSWORD` variables with your `Model ID` from [Step 4](#4-train-the-nlc-model)  and NLC service credentials from [Step 2](#2-create-ibm-cloud-services).
+* Update the `CLASSIFIER_ID`, `NATURAL_LANGUAGE_CLASSIFIER_APIKEY`, and `NATURAL_LANGUAGE_CLASSIFIER_URL` variables with your `Model ID` from [Step 4](#4-train-the-nlc-model)  and NLC service credentials from [Step 2](#2-create-ibm-cloud-services).
 
 * Ensure [Node.js](https://nodejs.org/en/) is installed.
 
