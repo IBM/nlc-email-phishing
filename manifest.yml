@@ -3,9 +3,9 @@ applications:
   memory: 512M
   instances: 1
   domain: mybluemix.net
-  name: nlc-email-phishing
+  name: nlc-email-phishing-ADD-NAME
   disk_quota: 1024M
   env:
     CLASSIFIER_ID: placeholder
-    NATURAL_LANGUAGE_CLASSIFIER_USERNAME: placeholder
-    NATURAL_LANGUAGE_CLASSIFIER_PASSWORD: placeholder
+    NATURAL_LANGUAGE_CLASSIFIER_APIKEY: placeholder
+    NATURAL_LANGUAGE_CLASSIFIER_URL: placeholder
