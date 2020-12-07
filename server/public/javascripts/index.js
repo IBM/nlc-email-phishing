@@ -28,7 +28,7 @@
 
     function renderAnswer(data) {
         if (!data.classes || !data.classes.length > 0) {
-            $('.answer').html('Something went wrong :-(');
+            $('.answer').html(data);
         } else {
             var top = data.classes[0]
             $('.answer').html(top.class_name.toUpperCase());
