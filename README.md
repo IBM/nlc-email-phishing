@@ -1,3 +1,7 @@
+# WARNING: This repository is no longer maintained :warning:
+
+> This repository will not be updated. The repository will be kept available in read-only mode. 
+
 # Determine email spam with Watson Natural Language Classifier
 
 In this Code Pattern, we will build an app that classifies email, either labeling it as "Phishing", "Spam", or "Ham" if it does not appear suspicious. We'll be using IBM Watson Natural Language Classifier (NLC) to train a model using email examples from an [EDRM Enron email dataset](http://nlp.cs.aueb.gr/software.html). Please note that this data is [free to use for non-commercial use, and explicit permission must be obtained otherwise](https://labs-repos.iit.demokritos.gr/skel/i-config/downloads/PU123ACorpora_readme.txt). The custom NLC model can be quickly and easily built in the Web UI, deployed into our nodejs app using the [Watson Developer Cloud Nodejs SDK](https://github.com/watson-developer-cloud/node-sdk), and then run from a browser.
